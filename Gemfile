@@ -45,11 +45,12 @@ group :development, :test do
   gem 'spring'
   gem 'rspec-rails', '~> 3.0'
   gem 'capybara'
-
+  gem 'factory_girl_rails'
 end
 
 group :production do
   gem 'pg'            
   gem 'rails_12factor'
+  gem 'puma'
 end
 
