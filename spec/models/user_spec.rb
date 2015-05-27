@@ -16,6 +16,7 @@ RSpec.describe User, type: :model do
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:remember_digest) }
   it { should respond_to(:authenticate) }
+  it { should respond_to(:items) }
   
 
   it { should be_valid }
@@ -102,4 +103,27 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "item associations" do
+
+    before { @user.save }
+    let!(:older_item) do
+      FactoryGirl.create(:item, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_item) do
+      FactoryGirl.create(:item, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should have the right item in the right order" do
+      expect(@user.items.to_a).to eq [newer_item, older_item]
+    end
+
+    it "should destroy associated items" do
+      items = @user.items.to_a
+      @user.destroy
+      expect(items).not_to be_empty
+      items.each do |item|
+        expect(Item.where(id: item.id)).to be_empty
+      end
+    end
+  end
 end

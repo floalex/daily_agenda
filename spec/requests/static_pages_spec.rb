@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "StaticPages", type: :request do
+
+  subject { page }
     
   describe "Home page" do
     before { visit root_path }
@@ -29,4 +31,5 @@ RSpec.describe "StaticPages", type: :request do
       expect(page).to have_title('Help')
     end
   end
+
 end

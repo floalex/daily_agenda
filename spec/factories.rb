@@ -1,12 +1,14 @@
-FactoryGirl.define do  factory :item do
-    name "MyString"
-user nil
-  end
+FactoryGirl.define do 
 
   factory :user do
-    name                   "example user"
-    email                  "user@exmaple.com"
+    sequence(:name)  { |n| "Person #{n}" }
+    sequence(:email) { |n| "person_#{n}@example.com"}
     password               "foobar"
     password_confirmation  "foobar"
+  end
+
+  factory :item do
+    name "Lorem ipsum"
+    user
   end
 end
