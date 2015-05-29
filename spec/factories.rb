@@ -5,6 +5,8 @@ FactoryGirl.define do
     sequence(:email) { |n| "person_#{n}@example.com"}
     password               "foobar"
     password_confirmation  "foobar"
+    activated    true 
+    activated_at Time.zone.now
   end
 
   factory :item do
