@@ -16,8 +16,13 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     flash[:success] = "Item deleted"
-    redirect_to request.referrer || root_url
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
+
 
   private
     def item_params

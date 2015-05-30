@@ -1,0 +1,5 @@
+<% if @item.destroyed? %>
+  $('.js-items-count').html("<%= @item.user.items.count %>");
+<% else %>
+  $('#item-' +<%= @item.id %>).prepend("<div class='alert alert-danger'><%= flash[:error] %></div>");
+<% end %>
