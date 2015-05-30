@@ -4,7 +4,7 @@
     <%= link_to "", item, method: :delete, class: 'glyphicon glyphicon-ok', remote: true %>
   </span>
   <span class="timestamp">
-    Posted <%= time_ago_in_words(item.created_at) %> ago.
+    <%= item.days_left %> days left
     <% if current_user?(item.user) %>
     <%= link_to "delete", item, method: :delete,
                                 data: { confirm: "Are you sure?" } %>
